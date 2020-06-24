@@ -63,7 +63,7 @@ class Snake extends PIXI.Application {
         }
         if(oldPosition.find((elem, i) => i > 2 && elem[0] === snake.x && elem[1] === snake.y)){
             console.log("END GAME");
-
+            this.stage.destroy(); // this.destroy(true);
         }
 
 
@@ -88,7 +88,6 @@ class Snake extends PIXI.Application {
             snake.x < food.x + food.width && snake.y < food.y + food.height) {
             this.stage.removeChildAt(0);
             this.stage.addChildAt(this.drawChildObject(this.stage.children[this.stage.children.length-1].x, this.stage.children[this.stage.children.length-1].y), this.stage.children.length);
-            console.log(this.stage.children);
         }
     }
 
@@ -100,7 +99,6 @@ class Snake extends PIXI.Application {
         this.ticker.add(() => {
             if(this.stage.children[0].name != "food") {
                 food = this.drawObject(true);
-                console.log(snake.x,snake.y,this.orientation);
                 this.stage.addChildAt(food, 0);
             }
         })
